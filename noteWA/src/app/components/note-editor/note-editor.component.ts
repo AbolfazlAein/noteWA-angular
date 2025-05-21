@@ -1,11 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Note } from '../../models/note';
 
 @Component({
   selector: 'app-note-editor',
-  imports: [],
   templateUrl: './note-editor.component.html',
-  styleUrl: './note-editor.component.css'
+  styleUrls: ['./note-editor.component.scss']
 })
-export class NoteEditorComponent {
-
+export class NoteEditorComponent implements OnInit {
+  @Input() note!: Note;
+  @Output() save = new EventEmitter<Note>();
+  @Output() back = new EventEmitter<void>();
+  
+  editedNote!: Note;
+  
+  ngOnInit(): void {
+    // Create a copy of the note to avoid direct mutation
+    this.editedNote = { ...this.note };
+  }
+  
+  onTitleChange(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.editedNote.title = target.value;
+  }
+  
+  onContentChange(event: Event): void {
+    const target = event.target as HTMLTextAreaElement;
+    this.editedNote.content = target.value;
+  }
+  
+  saveNote(): void {
+    this.save.emit(this.editedNote);
+  }
+  
+  goBack(): void {
+    this.back.emit();
+  }
 }

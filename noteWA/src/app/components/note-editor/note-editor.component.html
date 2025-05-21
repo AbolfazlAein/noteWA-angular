@@ -1,1 +1,27 @@
 <p>note-editor works!</p>
+<div class="note-editor">
+    <div class="editor-header">
+      <button class="back-button" (click)="goBack()">
+        ← Back
+      </button>
+      <button class="save-button" (click)="saveNote()">
+        Save
+      </button>
+    </div>
+    
+    <div class="editor-content">
+      <input 
+        class="title-input" 
+        type="text" 
+        [value]="editedNote.title"
+        (input)="onTitleChange($event)" 
+        placeholder="Note Title">
+      
+      <textarea 
+        class="content-textarea" 
+        [value]="editedNote.content"
+        (input)="onContentChange($event)" 
+        placeholder="Write your note here..."></textarea>
+    </div>
+  </div>
+  
