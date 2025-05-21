@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-empty-state',
-  imports: [],
   templateUrl: './empty-state.component.html',
-  styleUrl: './empty-state.component.css'
+  styleUrls: ['./empty-state.component.scss']
 })
 export class EmptyStateComponent {
+  @Output() createNote = new EventEmitter<void>();
 
+  onCreateNoteClick(): void {
+    this.createNote.emit();
+  }
 }
