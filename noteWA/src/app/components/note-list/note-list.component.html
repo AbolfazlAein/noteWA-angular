@@ -1,1 +1,31 @@
 <p>note-list works!</p>
+<div class="note-app">
+    <div *ngIf="!selectedNote" class="note-list-container">
+      <div class="header">
+        <h1>Jot It Down</h1>
+        <button class="new-note-btn" (click)="createNewNote()">
+          <span>+</span> New Note
+        </button>
+      </div>
+      
+      <div *ngIf="notes.length === 0" class="empty-state">
+        <app-empty-state (createNote)="createNewNote()"></app-empty-state>
+      </div>
+      
+      <div *ngIf="notes.length > 0" class="note-grid">
+        <app-note-card 
+          *ngFor="let note of notes" 
+          [note]="note" 
+          (noteClick)="selectNote(note)">
+        </app-note-card>
+      </div>
+    </div>
+    
+    <app-note-editor 
+      *ngIf="selectedNote" 
+      [note]="selectedNote" 
+      (save)="saveNote($event)"
+      (back)="backToList()">
+    </app-note-editor>
+  </div>
+  
