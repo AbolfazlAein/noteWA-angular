@@ -1,1 +1,20 @@
-<p>notes works!</p>
+<div class="container">
+    <h2>📝 Angular Note App</h2>
+  
+    <textarea [(ngModel)]="newNote" placeholder="Write a new note..."></textarea>
+    <button (click)="addNote()">Add Note</button>
+  
+    <div *ngFor="let note of notes; let i = index" class="note">
+      <div *ngIf="editIndex !== i">
+        <p>{{ note }}</p>
+        <button (click)="startEdit(i)">Edit</button>
+        <button (click)="deleteNote(i)">Delete</button>
+      </div>
+      <div *ngIf="editIndex === i">
+        <input [(ngModel)]="editText" />
+        <button (click)="saveEdit(i)">Save</button>
+        <button (click)="cancelEdit()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  
