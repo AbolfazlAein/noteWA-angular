@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-notes',
+  standalone: true, 
+  imports: [CommonModule, FormsModule], 
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css']
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent {
   newNote: string = '';
   notes: string[] = [];
   editIndex: number | null = null;
   editText: string = '';
 
-  ngOnInit() {
+  constructor() {
     const saved = localStorage.getItem('notes');
     if (saved) {
       this.notes = JSON.parse(saved);
