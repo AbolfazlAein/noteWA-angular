@@ -8,11 +8,11 @@ import { NotesComponent } from './notes/notes.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NotesComponent
+    NotesComponent  
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule     
   ],
   providers: [],
   bootstrap: [AppComponent]
