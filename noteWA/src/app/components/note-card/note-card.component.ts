@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Note } from '../../models/note';
 
 @Component({
   selector: 'app-note-card',
-  imports: [],
   templateUrl: './note-card.component.html',
-  styleUrl: './note-card.component.css'
+  styleUrls: ['./note-card.component.scss']
 })
 export class NoteCardComponent {
+  @Input() note!: Note;
+  @Output() noteClick = new EventEmitter<Note>();
 
+  onNoteClick(): void {
+    this.noteClick.emit(this.note);
+  }
 }
